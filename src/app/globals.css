@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1f2937;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+/* Notebook Ledger Styles */
+.notebook-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Ledger accounting double line bottom border */
+.ledger-double-border {
+  border-bottom: 3px double #374151;
+}
+
+/* Print Styling */
+@media print {
+  /* Hide interactive controls */
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Reset container layout for printing */
+  .print-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Traditional ledger borders */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th, td {
+    border: 1px solid #4b5563 !important; /* darker gray for visible print borders */
+    color: #000000 !important;
+    padding: 6px 8px !important;
+    font-size: 12px !important;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+}
