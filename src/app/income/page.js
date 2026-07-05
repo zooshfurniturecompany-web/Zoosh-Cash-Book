@@ -208,26 +208,26 @@ export default function IncomePage() {
         {/* Controls Panel */}
         <div className="no-print space-y-4 mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
+            <div className="hidden sm:block">
               <h1 className="text-xl font-bold tracking-tight text-gray-800">Income Register</h1>
               <p className="text-xs text-gray-500 mt-0.5">Manage income receipts and client payments.</p>
             </div>
             
-            <div className="flex flex-wrap gap-2">
-              <form onSubmit={handleSearch} className="flex items-center">
-                <div className="relative">
+            <div className="flex items-center justify-between w-full md:w-auto gap-2">
+              <form onSubmit={handleSearch} className="flex items-center flex-1 md:flex-none">
+                <div className="relative flex-1 md:flex-none">
                   <input
                     type="text"
                     placeholder="Search income particulars..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-8 pr-3 py-1.5 border border-gray-200 rounded text-xs text-gray-700 bg-white focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 w-64"
+                    className="pl-8 pr-3 py-1.5 border border-gray-200 rounded text-xs text-gray-700 bg-white focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 w-full md:w-64"
                   />
                   <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-2.5" />
                 </div>
                 <button
                   type="submit"
-                  className="ml-1.5 px-3 py-1.5 bg-gray-800 hover:bg-gray-900 text-white rounded text-xs font-semibold transition cursor-pointer"
+                  className="ml-1.5 px-3 py-1.5 bg-gray-800 hover:bg-gray-900 text-white rounded text-xs font-semibold transition cursor-pointer whitespace-nowrap"
                 >
                   Search
                 </button>
@@ -247,7 +247,7 @@ export default function IncomePage() {
 
               <button
                 onClick={handlePrint}
-                className="flex items-center space-x-1 px-3 py-1.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 rounded text-xs font-semibold transition shadow-sm cursor-pointer"
+                className="hidden sm:flex items-center space-x-1 px-3 py-1.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 rounded text-xs font-semibold transition shadow-sm cursor-pointer whitespace-nowrap"
               >
                 <Printer className="w-3.5 h-3.5" />
                 <span>Print Income</span>

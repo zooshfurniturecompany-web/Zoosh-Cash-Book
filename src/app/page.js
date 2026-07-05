@@ -288,26 +288,26 @@ export default function CashBookPage() {
         {/* Controls Panel */}
         <div className="no-print space-y-4 mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
+            <div className="hidden sm:block">
               <h1 className="text-xl font-bold tracking-tight text-gray-800">Zoosh Cash Book</h1>
               <p className="text-xs text-gray-500 mt-0.5">Maintain daily financial ledger records.</p>
             </div>
             
-            <div className="flex flex-wrap gap-2">
-              <form onSubmit={handleSearch} className="flex items-center">
-                <div className="relative">
+            <div className="flex items-center justify-between w-full md:w-auto gap-2">
+              <form onSubmit={handleSearch} className="flex items-center flex-1 md:flex-none">
+                <div className="relative flex-1 md:flex-none">
                   <input
                     type="text"
-                    placeholder="Search by particulars or YYYY-MM-DD..."
+                    placeholder="Search by particulars or date..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-8 pr-3 py-1.5 border border-gray-200 rounded text-xs text-gray-700 bg-white focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 w-64"
+                    className="pl-8 pr-3 py-1.5 border border-gray-200 rounded text-xs text-gray-700 bg-white focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 w-full md:w-64"
                   />
                   <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-2.5" />
                 </div>
                 <button
                   type="submit"
-                  className="ml-1.5 px-3 py-1.5 bg-gray-800 hover:bg-gray-900 text-white rounded text-xs font-semibold transition cursor-pointer"
+                  className="ml-1.5 px-3 py-1.5 bg-gray-800 hover:bg-gray-900 text-white rounded text-xs font-semibold transition cursor-pointer whitespace-nowrap"
                 >
                   Search
                 </button>
@@ -327,7 +327,7 @@ export default function CashBookPage() {
 
               <button
                 onClick={handlePrint}
-                className="flex items-center space-x-1 px-3 py-1.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 rounded text-xs font-semibold transition shadow-sm cursor-pointer"
+                className="hidden sm:flex items-center space-x-1 px-3 py-1.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 rounded text-xs font-semibold transition shadow-sm cursor-pointer whitespace-nowrap"
               >
                 <Printer className="w-3.5 h-3.5" />
                 <span>Print Ledger</span>
@@ -408,61 +408,44 @@ export default function CashBookPage() {
         ) : (
           /* Main Cash Book Ledger Sheet (Notebook Look) */
           <div className="space-y-4">
-            {/* Net Opening Balance Widget */}
-            <div className="bg-white border border-gray-200 rounded-lg p-5 notebook-shadow flex items-center justify-between no-print">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Net Opening Balance</span>
-                <h2 className="text-2xl sm:text-3xl font-black text-gray-900 font-mono mt-0.5">
-                  ₹{grandTotalOpening.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            {/* Net Balances Grid */}
+            <div className="grid grid-cols-2 gap-3 no-print">
+              <div className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 notebook-shadow flex flex-col justify-center">
+                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-gray-400">Net Opening Balance</span>
+                <h2 className="text-sm min-[375px]:text-base sm:text-2xl font-black text-gray-900 font-mono mt-0.5 break-all">
+                  ₹{grandTotalOpening.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                 </h2>
               </div>
-              <div className="text-right">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Net Closing Balance</span>
-                <h2 className="text-2xl sm:text-3xl font-black text-gray-950 font-mono mt-0.5">
-                  ₹{grandTotalClosing.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              <div className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 notebook-shadow flex flex-col justify-center text-right">
+                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-gray-400">Net Closing Balance</span>
+                <h2 className="text-sm min-[375px]:text-base sm:text-2xl font-black text-emerald-700 font-mono mt-0.5 break-all">
+                  ₹{grandTotalClosing.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                 </h2>
               </div>
             </div>
 
             <div className="print-container bg-white border border-gray-200 rounded notebook-shadow overflow-hidden">
             
-            {/* Status bar */}
-            <div className="no-print flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-gray-50/80">
-              <div className="flex items-center space-x-2">
-                {dayState.is_closed ? (
-                  <span className="flex items-center text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">
-                    <Lock className="w-3 h-3 mr-1" /> Ledger Closed
-                  </span>
-                ) : (
-                  <span className="flex items-center text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">
-                    <LockOpen className="w-3 h-3 mr-1" /> Ledger Open
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center space-x-2">
-                {!dayState.is_closed && (
-                  <>
-                    <button
-                      onClick={() => triggerAddModal('expense')}
-                      className="flex items-center space-x-1 px-3 py-1.5 bg-gray-800 hover:bg-gray-900 text-white rounded text-xs font-semibold shadow-sm transition cursor-pointer"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                      <span>Add Expense</span>
-                    </button>
-                    <button
-                      onClick={() => triggerAddModal('income')}
-                      className="flex items-center space-x-1 px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-xs font-semibold shadow-sm transition cursor-pointer"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                      <span>Add Income</span>
-                    </button>
-                  </>
-                )}
-
+            {/* Status & Actions Header */}
+            <div className="no-print p-3 sm:p-4 border-b border-gray-200 bg-gray-50/80 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              
+              {/* Left side: Status and Close Day Toggle */}
+              <div className="flex items-center justify-between sm:justify-start sm:space-x-3">
+                <div className="flex items-center">
+                  {dayState.is_closed ? (
+                    <span className="flex items-center text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">
+                      <Lock className="w-3 h-3 mr-1" /> Ledger Closed
+                    </span>
+                  ) : (
+                    <span className="flex items-center text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">
+                      <LockOpen className="w-3 h-3 mr-1" /> Ledger Open
+                    </span>
+                  )}
+                </div>
+                
                 <button
                   onClick={handleToggleCloseDay}
-                  className={`flex items-center space-x-1 px-3 py-1.5 border rounded text-xs font-semibold transition cursor-pointer shadow-sm ${
+                  className={`flex items-center space-x-1 px-2.5 py-1 border rounded text-[10px] font-semibold transition cursor-pointer shadow-sm ${
                     dayState.is_closed
                       ? 'bg-amber-50 hover:bg-amber-100 border-amber-200 text-amber-800'
                       : 'bg-white hover:bg-gray-50 border-gray-200 text-gray-700'
@@ -471,6 +454,26 @@ export default function CashBookPage() {
                   {dayState.is_closed ? 'Reopen Day' : 'Close Day'}
                 </button>
               </div>
+
+              {/* Right side: Add Expense / Add Income buttons */}
+              {!dayState.is_closed && (
+                <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:space-x-2">
+                  <button
+                    onClick={() => triggerAddModal('expense')}
+                    className="flex items-center justify-center space-x-1 px-3 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded text-xs font-semibold shadow-sm transition cursor-pointer w-full sm:w-auto"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Add Expense</span>
+                  </button>
+                  <button
+                    onClick={() => triggerAddModal('income')}
+                    className="flex items-center justify-center space-x-1 px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-xs font-semibold shadow-sm transition cursor-pointer w-full sm:w-auto"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Add Income</span>
+                  </button>
+                </div>
+              )}
             </div>
 
             {displayedAccounts.length === 0 ? (
