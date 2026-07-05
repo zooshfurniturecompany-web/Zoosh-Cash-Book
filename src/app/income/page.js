@@ -350,8 +350,8 @@ export default function IncomePage() {
                 <table className="w-full text-left border-collapse text-xs">
                   <thead>
                     <tr className="bg-gray-50 text-gray-500 font-bold uppercase border-b border-gray-200 text-[10px] tracking-wider">
-                      <th className="px-4 py-2.5 font-semibold w-24">Date</th>
-                      <th className="px-4 py-2.5 font-semibold">Particulars</th>
+                      <th className="px-4 py-2.5 font-semibold min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">Date</th>
+                      <th className="px-4 py-2.5 font-semibold min-w-[150px] sticky-col-2">Particulars</th>
                       <th className="px-4 py-2.5 font-semibold">Remarks</th>
                       
                       {displayedAccounts.map((account) => (
@@ -375,8 +375,8 @@ export default function IncomePage() {
                           onClick={() => handleRowClick(entry)}
                           className="hover:bg-gray-50/50 transition cursor-pointer group"
                         >
-                          <td className="px-4 py-2 font-mono text-gray-500">{formatDateDMY(entry.transaction_date)}</td>
-                          <td className="px-4 py-2 font-medium text-gray-900 group-hover:text-gray-800">
+                          <td className="px-4 py-2 font-mono text-gray-500 min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">{formatDateDMY(entry.transaction_date)}</td>
+                          <td className="px-4 py-2 font-medium text-gray-900 group-hover:text-gray-800 min-w-[150px] sticky-col-2">
                             {entry.particulars}
                           </td>
                           <td className="px-4 py-2 text-gray-400 text-[11px]">{entry.remarks || '-'}</td>
@@ -399,8 +399,8 @@ export default function IncomePage() {
                     
                     {/* Total Income Row */}
                     <tr className="bg-gray-100 text-[11px] font-bold text-gray-950 border-t-2 border-gray-300">
-                      <td className="px-4 py-2 text-gray-400 font-mono">-</td>
-                      <td className="px-4 py-2 uppercase">Total Income</td>
+                      <td className="px-4 py-2 text-gray-400 font-mono min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">-</td>
+                      <td className="px-4 py-2 uppercase min-w-[150px] sticky-col-2">Total Income</td>
                       <td className="px-4 py-2 text-gray-400">-</td>
                       
                       {displayedAccounts.map((account) => {

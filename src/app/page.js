@@ -486,8 +486,8 @@ export default function CashBookPage() {
                 <table className="w-full text-left border-collapse text-xs">
                   <thead>
                     <tr className="bg-gray-50 text-gray-500 font-bold uppercase border-b border-gray-200 text-[10px] tracking-wider">
-                      <th className="px-4 py-2.5 font-semibold w-24">Date</th>
-                      <th className="px-4 py-2.5 font-semibold">Particulars</th>
+                      <th className="px-4 py-2.5 font-semibold min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">Date</th>
+                      <th className="px-4 py-2.5 font-semibold min-w-[150px] sticky-col-2">Particulars</th>
                       <th className="px-4 py-2.5 font-semibold">Remarks</th>
                       
                       {/* Dynamic Columns */}
@@ -502,8 +502,8 @@ export default function CashBookPage() {
                     
                     {/* 1. Opening Balance Row (Click cell to view breakdown) */}
                     <tr className="bg-gray-100 text-[11px] font-bold border-b-2 border-gray-300 text-gray-950">
-                      <td className="px-4 py-2 font-mono text-gray-500">{formatDateDMY(currentDate)}</td>
-                      <td className="px-4 py-2 uppercase tracking-wide">Opening Balance</td>
+                      <td className="px-4 py-2 font-mono text-gray-500 min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">{formatDateDMY(currentDate)}</td>
+                      <td className="px-4 py-2 uppercase tracking-wide min-w-[150px] sticky-col-2">Opening Balance</td>
                       <td className="px-4 py-2 text-gray-400 italic">-</td>
                       
                       {displayedAccounts.map((account) => {
@@ -535,8 +535,8 @@ export default function CashBookPage() {
                           onClick={() => handleRowClick(entry)}
                           className="hover:bg-gray-50/50 transition cursor-pointer group"
                         >
-                          <td className="px-4 py-2 font-mono text-gray-500">{formatDateDMY(entry.transaction_date)}</td>
-                          <td className="px-4 py-2 font-medium text-gray-900 group-hover:text-gray-800">
+                          <td className="px-4 py-2 font-mono text-gray-500 min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">{formatDateDMY(entry.transaction_date)}</td>
+                          <td className="px-4 py-2 font-medium text-gray-900 group-hover:text-gray-800 min-w-[150px] sticky-col-2">
                             {entry.particulars}
                           </td>
                           <td className="px-4 py-2 text-gray-400 text-[11px]">
@@ -564,8 +564,8 @@ export default function CashBookPage() {
 
                     {/* 3. Total Income Row */}
                     <tr className="bg-gray-50/20 text-[11px] font-semibold border-t-2 border-gray-300">
-                      <td className="px-4 py-2 text-gray-400 font-mono">-</td>
-                      <td className="px-4 py-2 text-emerald-800 font-bold uppercase">Total Income</td>
+                      <td className="px-4 py-2 text-gray-400 font-mono min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">-</td>
+                      <td className="px-4 py-2 text-emerald-800 font-bold uppercase min-w-[150px] sticky-col-2">Total Income</td>
                       <td className="px-4 py-2 text-gray-400">-</td>
                       
                       {displayedAccounts.map((account) => {
@@ -580,8 +580,8 @@ export default function CashBookPage() {
 
                     {/* 4. Total Expense Row */}
                     <tr className="bg-gray-50/20 text-[11px] font-semibold">
-                      <td className="px-4 py-2 text-gray-400 font-mono">-</td>
-                      <td className="px-4 py-2 text-red-800 font-bold uppercase">Total Expense</td>
+                      <td className="px-4 py-2 text-gray-400 font-mono min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">-</td>
+                      <td className="px-4 py-2 text-red-800 font-bold uppercase min-w-[150px] sticky-col-2">Total Expense</td>
                       <td className="px-4 py-2 text-gray-400">-</td>
                       
                       {displayedAccounts.map((account) => {
@@ -596,8 +596,8 @@ export default function CashBookPage() {
 
                     {/* 5. Closing Balance Row */}
                     <tr className="bg-gray-100 text-[11px] font-bold border-t-2 border-gray-300 border-b-4 border-double border-gray-900 text-gray-950">
-                      <td className="px-4 py-2 font-mono text-gray-500">{formatDateDMY(currentDate)}</td>
-                      <td className="px-4 py-2 uppercase">Closing Balance</td>
+                      <td className="px-4 py-2 font-mono text-gray-500 min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">{formatDateDMY(currentDate)}</td>
+                      <td className="px-4 py-2 uppercase min-w-[150px] sticky-col-2">Closing Balance</td>
                       <td className="px-4 py-2 text-gray-400 font-normal italic">-</td>
                       
                       {displayedAccounts.map((account) => {

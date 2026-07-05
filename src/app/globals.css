@@ -20,14 +20,47 @@ body {
   border-bottom: 3px double #374151;
 }
 
+/* --- Mobile Sticky Columns (Freeze Columns) --- */
+.sticky-col-1 {
+  position: sticky !important;
+  left: 0 !important;
+  z-index: 10 !important;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-col-2 {
+  position: sticky !important;
+  left: 80px !important; /* Width of the first column */
+  z-index: 10 !important;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Solid background colors for sticky cells to prevent text overlap */
+tr.bg-white .sticky-col-1 { background-color: #ffffff !important; }
+tr.bg-white .sticky-col-2 { background-color: #ffffff !important; }
+
+/* Hover states */
+tr.hover\:bg-gray-50\/50:hover .sticky-col-1 { background-color: #f9fafb !important; }
+tr.hover\:bg-gray-50\/50:hover .sticky-col-2 { background-color: #f9fafb !important; }
+
+/* Highlighted Rows (Opening/Closing Balance) */
+tr.bg-gray-100 .sticky-col-1 { background-color: #f3f4f6 !important; }
+tr.bg-gray-100 .sticky-col-2 { background-color: #f3f4f6 !important; }
+
+/* Totals Rows */
+tr.bg-gray-50\/20 .sticky-col-1 { background-color: #f9fafb !important; }
+tr.bg-gray-50\/20 .sticky-col-2 { background-color: #f9fafb !important; }
+
+/* Table Header */
+thead tr .sticky-col-1 { background-color: #f9fafb !important; z-index: 20 !important; }
+thead tr .sticky-col-2 { background-color: #f9fafb !important; z-index: 20 !important; }
+
 /* Print Styling */
 @media print {
-  /* Hide interactive controls */
   .no-print {
     display: none !important;
   }
   
-  /* Reset container layout for printing */
   .print-container {
     width: 100% !important;
     max-width: 100% !important;
@@ -42,17 +75,22 @@ body {
     color: #000000 !important;
   }
 
-  /* Traditional ledger borders */
   table {
     border-collapse: collapse !important;
     width: 100% !important;
   }
 
   th, td {
-    border: 1px solid #4b5563 !important; /* darker gray for visible print borders */
+    border: 1px solid #4b5563 !important;
     color: #000000 !important;
     padding: 6px 8px !important;
     font-size: 12px !important;
+  }
+
+  /* Reset sticky positions on print */
+  .sticky-col-1, .sticky-col-2 {
+    position: static !important;
+    box-shadow: none !important;
   }
 
   thead {
