@@ -97,7 +97,7 @@ export default function CashBookPage() {
         .order('created_at', { ascending: true });
 
       if (entriesError) throw entriesError;
-      const dayEntries = entriesData || [];
+      const dayEntries = (entriesData || []).filter(entry => entry.details && entry.details.length > 0);
       setEntries(dayEntries);
 
       // 5. Determine displayed accounts for the day
@@ -162,7 +162,8 @@ export default function CashBookPage() {
 
       const { data, error } = await query.order('transaction_date', { ascending: false }).limit(100);
       if (error) throw error;
-      setSearchResults(data || []);
+      const validResults = (data || []).filter(entry => entry.details && entry.details.length > 0);
+      setSearchResults(validResults);
     } catch (err) {
       console.error(err);
     } finally {
