@@ -44,12 +44,14 @@ export default function AccountModal({ isOpen, onClose, account, onSuccess }) {
 
     try {
       if (isEdit) {
-        // Edit Account (only name and active status, type can be edited but opening balance cannot)
+        // Edit Account
+        const balanceNum = parseFloat(openingBalance);
         const { error: updateError } = await supabase
           .from('accounts')
           .update({
             account_name: name.trim(),
             account_type: type,
+            opening_balance: isNaN(balanceNum) ? 0.00 : balanceNum,
             active: isActive
           })
           .eq('id', account.id);
@@ -125,16 +127,15 @@ export default function AccountModal({ isOpen, onClose, account, onSuccess }) {
 
           <div>
             <label className="block text-[10px] font-bold uppercase text-gray-500 mb-1">
-              Opening Balance {isEdit && <span className="text-gray-400 font-normal lowercase">(cannot be modified)</span>}
+              Opening Balance
             </label>
             <input
               type="number"
               step="0.01"
               required
-              disabled={isEdit}
               value={openingBalance}
               onChange={(e) => setOpeningBalance(e.target.value)}
-              className="w-full px-2.5 py-1.5 border border-gray-200 rounded text-xs text-gray-700 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-white disabled:bg-gray-50 disabled:text-gray-400 font-mono"
+              className="w-full px-2.5 py-1.5 border border-gray-200 rounded text-xs text-gray-700 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-white font-mono"
             />
           </div>
 
