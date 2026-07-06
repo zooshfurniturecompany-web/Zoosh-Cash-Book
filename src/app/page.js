@@ -277,20 +277,22 @@ export default function CashBookPage() {
       <Header />
 
       {/* Print View Header */}
-      <div className="hidden print:block text-center py-6 border-b border-gray-400">
-        <h1 className="text-2xl font-bold uppercase tracking-wider text-black">Zoosh Furniture</h1>
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-600 mt-1">Daily Cash Book Ledger</h2>
+      <div className="hidden print:flex flex-col items-center py-6 border-b border-gray-400">
+        <img src="/logo.jpg" alt="ZOOSH Logo" className="h-10 w-auto object-contain mb-2 bg-black rounded" />
+        <h2 className="text-xs font-bold uppercase tracking-widest text-gray-600">Daily Cash Book Ledger</h2>
         <p className="text-xs text-gray-500 mt-2 font-mono">Date: {formatDateDMY(currentDate)}</p>
       </div>
 
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
         
-        {/* Controls Panel */}
         <div className="no-print space-y-4 mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div className="hidden sm:block">
-              <h1 className="text-xl font-bold tracking-tight text-gray-800">Zoosh Cash Book</h1>
-              <p className="text-xs text-gray-500 mt-0.5">Maintain daily financial ledger records.</p>
+            <div className="hidden sm:flex items-center space-x-3.5">
+              <img src="/logo.jpg" alt="ZOOSH Logo" className="h-10 w-auto object-contain bg-black rounded shadow-sm" />
+              <div>
+                <h1 className="text-lg font-bold tracking-tight text-gray-800">Cash Book</h1>
+                <p className="text-xs text-gray-500">Maintain daily financial ledger records.</p>
+              </div>
             </div>
             
             <div className="flex items-center justify-between w-full md:w-auto gap-2">
