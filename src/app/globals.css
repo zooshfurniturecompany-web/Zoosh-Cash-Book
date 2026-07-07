@@ -57,6 +57,11 @@ thead tr .sticky-col-2 { background-color: #f9fafb !important; z-index: 20 !impo
 
 /* Print Styling */
 @media print {
+  @page {
+    size: landscape;
+    margin: 8mm;
+  }
+
   .no-print {
     display: none !important;
   }
@@ -78,19 +83,22 @@ thead tr .sticky-col-2 { background-color: #f9fafb !important; z-index: 20 !impo
   table {
     border-collapse: collapse !important;
     width: 100% !important;
+    table-layout: auto !important;
   }
 
   th, td {
-    border: 1px solid #4b5563 !important;
+    border: 1px solid #9ca3af !important;
     color: #000000 !important;
-    padding: 6px 8px !important;
-    font-size: 12px !important;
+    padding: 4px 6px !important;
+    font-size: 9px !important;
+    word-break: break-word !important;
   }
 
   /* Reset sticky positions on print */
   .sticky-col-1, .sticky-col-2 {
     position: static !important;
     box-shadow: none !important;
+    background-color: transparent !important;
   }
 
   thead {
