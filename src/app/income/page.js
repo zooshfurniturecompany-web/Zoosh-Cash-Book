@@ -352,7 +352,7 @@ export default function IncomePage() {
                     <tr className="bg-gray-50 text-gray-500 font-bold uppercase border-b border-gray-200 text-[10px] tracking-wider">
                       <th className="px-4 py-2.5 font-semibold min-w-[80px] w-[80px] max-w-[80px] sticky-col-1">Date</th>
                       <th className="px-4 py-2.5 font-semibold min-w-[150px] sticky-col-2">Particulars</th>
-                      <th className="px-4 py-2.5 font-semibold">Remarks</th>
+                      <th className="px-4 py-2.5 font-semibold min-w-[100px]">Remarks</th>
                       
                       {displayedAccounts.map((account) => (
                         <th key={account.id} className="px-4 py-2.5 text-right font-semibold w-40 border-l border-gray-200">
